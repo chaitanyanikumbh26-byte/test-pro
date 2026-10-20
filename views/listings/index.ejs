@@ -1,0 +1,31 @@
+<% layout("layouts/boilerplate.ejs") %>
+
+<body>
+    <h3>All Listings</h3>
+
+    <!-- Optional: Add New Listing Button -->
+    <!-- 
+    <form method="GET" action="/listings/new">
+        <button class="btn btn-dark">Add New Listing</button>
+    </form> 
+    -->
+
+    <!-- Bootstrap Grid Container -->
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+        <% for(let listing of allListing) { %>
+            <a href="/listings/<%= listing._id %>" class="listing-link">
+                <div class="card col listing-card">
+                    <!-- Corrected image path to access the url property -->
+                    <img src="<%= listing.image.url %>" class="card-img-top listing-img" alt="listing_image">
+                    
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b><%= listing.title %></b> <br>
+                            &#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> / night
+                        </p>
+                    </div>
+                </div>
+            </a>
+        <% } %>
+    </div>
+</body>
